@@ -76,6 +76,7 @@
   export default {
     data () {
       return {
+        listLoading: false,
         list: [],
         formData: {
           id: null,

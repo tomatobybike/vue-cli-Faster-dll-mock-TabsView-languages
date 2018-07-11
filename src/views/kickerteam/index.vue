@@ -94,6 +94,7 @@
   export default {
     data () {
       return {
+        listLoading: false,
         list: [],
         paginator: {
           pageNum: 1,

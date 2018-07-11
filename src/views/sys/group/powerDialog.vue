@@ -119,6 +119,7 @@
           console.log(error)
         })
       },
+      handleNodeClick () {},
       handleCheckAllChange (val) {
         console.log('val', val)
         this.checkedMenuIds = val ? this.$refs.tree.setCheckedNodes(this.data) : this.resetChecked()
