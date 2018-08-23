@@ -4,10 +4,12 @@ const webpack = require('webpack');
 module.exports = {
   entry: {
     vendor: [
-        'vue/dist/vue.common.js',
-        'vue-router',
-        'babel-polyfill',
-        'axios'
+      'babel-polyfill',
+      'vue/dist/vue.esm.js', // devtools vue
+      'vue-router',
+      'vuex', 
+      'axios',
+      'element-ui'
     ]
   },
   output: {
