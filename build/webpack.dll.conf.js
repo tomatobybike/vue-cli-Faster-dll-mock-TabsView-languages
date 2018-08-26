@@ -5,7 +5,7 @@ module.exports = {
   entry: {
     vendor: [
       'babel-polyfill',
-      'vue/dist/vue.esm.js', // devtools vue
+      'vue/dist/vue.common.js', // devtools vue
       'vue-router',
       'vuex', 
       'axios',
