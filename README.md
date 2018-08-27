@@ -9,3 +9,5 @@
 - [在线访问](http://panjiachen.github.io/vue-element-admin)
 
 - [使用文档](https://panjiachen.github.io/vue-element-admin-site/zh/)
+
+- devtools vue 调试显示vue，需要 webpack.dev.conf.js 和 webpack.dll.conf.js 中引用的vue.js 不一样
