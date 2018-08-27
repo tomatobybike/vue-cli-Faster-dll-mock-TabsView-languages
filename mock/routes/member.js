@@ -36,7 +36,7 @@ router.all('/info', function(req, res, next) {
       meta: {title: 'Example', icon: 'rule'},
       children: [
         {
-          path: 'kickerteamx',
+          path: 'kickerteam',
           name: 'Kickerteam',
           meta: {title: '球队'}
         },

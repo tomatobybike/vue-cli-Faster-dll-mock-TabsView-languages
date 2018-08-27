@@ -30,7 +30,7 @@ router.all('/list', function(req, res, next) {
     },
     "children": [{
       "id":3,
-      "path": "kickerteamx",
+      "path": "kickerteam",
       "name": "Kickerteam",
       "meta": {
         "title": "球队"
