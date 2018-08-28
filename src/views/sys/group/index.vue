@@ -1,51 +1,54 @@
 <template>
   <div class="app-container">
-    <div class="filter-container">
-      <el-button class="filter-item" type="primary" icon="el-icon-edit" size="small" @click="handleCreate">新建</el-button>
-    </div>
-    <el-table
-            :data="list"
-            v-loading.body="listLoading" element-loading-text="Loading"
-            stripe
-            border
-            style="width: 100%">
-      <el-table-column
-              label="id"
-              width="180">
-        <template slot-scope="scope">
-          <span >{{ scope.row.id }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column
-              label="名称"
-              width="180">
-        <template slot-scope="scope">
-          <span >{{ scope.row.name }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column
-              label="创建时间"
-              width="180">
-        <template slot-scope="scope">
-          <i class="el-icon-time"></i>
-          <span style="margin-left: 10px">{{ scope.row.date | moment}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作">
-        <template slot-scope="scope">
-          <el-button
-                  size="mini"
-                  @click="handleUpdate(scope.$index, scope.row)">编辑</el-button>
-          <el-button
-                  size="mini"
-                  @click="handlePower(scope.$index, scope.row)">权限</el-button>
-          <el-button
-                  size="mini"
-                  type="danger"
-                  @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+    <el-card>
+      <div class="filter-container">
+        <el-button class="filter-item" type="primary" icon="el-icon-edit" size="small" @click="handleCreate">新建</el-button>
+      </div>
+      <el-table
+              :data="list"
+              v-loading.body="listLoading" element-loading-text="Loading"
+              stripe
+              border
+              style="width: 100%">
+        <el-table-column
+                label="id"
+                width="180">
+          <template slot-scope="scope">
+            <span >{{ scope.row.id }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+                label="名称"
+                width="180">
+          <template slot-scope="scope">
+            <span >{{ scope.row.name }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+                label="创建时间"
+                width="180">
+          <template slot-scope="scope">
+            <i class="el-icon-time"></i>
+            <span style="margin-left: 10px">{{ scope.row.date | moment}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button
+                    size="mini"
+                    @click="handleUpdate(scope.$index, scope.row)">编辑</el-button>
+            <el-button
+                    size="mini"
+                    @click="handlePower(scope.$index, scope.row)">权限</el-button>
+            <el-button
+                    size="mini"
+                    type="danger"
+                    @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-card>
+
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :model="formData" label-position="left"    class="demo-form-inline" label-width="70px" >

@@ -51,6 +51,10 @@
     .logo{
       color:$headerBg;
       background: $headerBg;
+      padding-left: 4.1px !important;
+      .logoTitle {
+        display: none;
+      }
     }
     .main-container {
       margin-left: 36px;

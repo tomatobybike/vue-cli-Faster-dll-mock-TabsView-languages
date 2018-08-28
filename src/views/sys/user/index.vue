@@ -1,81 +1,94 @@
 <template>
   <div class="app-container">
-    <div class="filter-container">
-      <el-button class="filter-item" type="primary" icon="el-icon-edit" size="small" @click="handleCreate">新建</el-button>
-    </div>
-    <el-table
-            :data="list"
-            v-loading.body="listLoading" element-loading-text="Loading"
-            stripe
-            border
-            style="width: 100%">
-      <el-table-column
-              label="id"
-              width="180">
-        <template slot-scope="scope">
-          <span >{{ scope.row.id }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column
-              label="名称"
-              width="180">
-        <template slot-scope="scope">
-          <span >{{ scope.row.userName }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column
-              label="Email"
-              width="180">
-        <template slot-scope="scope">
-          <span >{{ scope.row.userEmail }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column
-              label="电话"
-              width="180">
-        <template slot-scope="scope">
-          <span >{{ scope.row.userPhone }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column
-              label="是否管理员"
-              width="180"
-              prop="isAdmin"
-              :formatter="isAdminTransform"
-      >
+    <el-card>
+      <div class="filter-container">
+        <el-button class="filter-item" type="primary" icon="el-icon-edit" size="small" @click="handleCreate">新建</el-button>
+      </div>
+      <el-table
+              :data="list"
+              v-loading.body="listLoading" element-loading-text="Loading"
+              stripe
+              border
+              style="width: 100%">
+        <el-table-column
+                label="id"
+                width="180">
+          <template slot-scope="scope">
+            <span >{{ scope.row.id }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+                label="名称"
+                width="180">
+          <template slot-scope="scope">
+            <span >{{ scope.row.userName }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+                label="Email"
+                width="180">
+          <template slot-scope="scope">
+            <span >{{ scope.row.userEmail }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+                label="电话"
+                width="180">
+          <template slot-scope="scope">
+            <span >{{ scope.row.userPhone }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+                label="是否管理员"
+                width="180"
+                prop="isAdmin"
+                :formatter="isAdminTransform"
+        >
 
-      </el-table-column>
-      <el-table-column
-              label="用户组"
-              width="180">
-        <template slot-scope="scope">
-          <span >{{ scope.row.groupName }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column
-              label="创建时间"
-              width="180">
-        <template slot-scope="scope">
-          <i class="el-icon-time"></i>
-          <span style="margin-left: 10px">{{ scope.row.date | moment}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作">
-        <template slot-scope="scope">
-          <el-button
-                  size="mini"
-                  @click="handleUpdate(scope.$index, scope.row)">编辑</el-button>
-          <el-button
-                  v-if="scope.row.groupId===0"
-                  size="mini"
-                  @click="handlePower(scope.$index, scope.row)">权限</el-button>
-          <el-button
-                  size="mini"
-                  type="danger"
-                  @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+        </el-table-column>
+        <el-table-column
+                label="用户组"
+                width="180">
+          <template slot-scope="scope">
+            <span >{{ scope.row.groupName }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+                label="创建时间"
+                width="180">
+          <template slot-scope="scope">
+            <i class="el-icon-time"></i>
+            <span style="margin-left: 10px">{{ scope.row.date | moment}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" width="220">
+          <template slot-scope="scope">
+            <el-button
+                    size="mini"
+                    @click="handleUpdate(scope.$index, scope.row)">编辑</el-button>
+            <el-button
+                    v-if="scope.row.groupId===0"
+                    size="mini"
+                    @click="handlePower(scope.$index, scope.row)">权限</el-button>
+            <el-button
+                    size="mini"
+                    type="danger"
+                    @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <div class="pager-box" ng-show="paginator.totalNum">
+        <el-pagination :layout="elPager.layout"
+                      background
+                      :current-page="paginator.pageNum"
+                      :page-sizes="elPager.pageSizes"
+                      :page-size="paginator.displayNum"
+                      @current-change="changePage"
+                      @size-change="changePageSize"
+                      :total="paginator.totalNum">
+        </el-pagination>
+      </div>
+    </el-card>
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :model="formData" label-position="left"    class="demo-form-inline" label-width="70px" >
@@ -126,18 +139,6 @@
       </div>
     </el-dialog>
 
-
-    <div class="pager-box" ng-show="paginator.totalNum">
-      <el-pagination :layout="elPager.layout"
-                     background
-                     :current-page="paginator.pageNum"
-                     :page-sizes="elPager.pageSizes"
-                     :page-size="paginator.displayNum"
-                     @current-change="changePage"
-                     @size-change="changePageSize"
-                     :total="paginator.totalNum">
-      </el-pagination>
-    </div>
     <power-dialog ref="powerDialog"></power-dialog>
   </div>
 </template>

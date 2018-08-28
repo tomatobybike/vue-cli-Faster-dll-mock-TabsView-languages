@@ -75,6 +75,12 @@ export default {
     thirdparty: '第三方登录',
     thirdpartyTips: '本地不能模拟，请结合自己业务进行模拟！！！'
   },
+  logout: {
+    title: '提示',
+    info: '退出',
+    confirm: '确定',
+    cancel: '取消'
+  },
   documentation: {
     documentation: '文档',
     github: 'Github 地址'

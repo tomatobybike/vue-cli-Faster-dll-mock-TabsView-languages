@@ -64,7 +64,8 @@ router.all('/list', function(req, res, next) {
         "title": "树"
       }
     }]
-  }]}
+  }
+]}
 
   $util.delayed(function(){
     res.json(data);

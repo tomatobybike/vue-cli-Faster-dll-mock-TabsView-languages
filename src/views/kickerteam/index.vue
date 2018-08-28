@@ -1,41 +1,55 @@
 <template>
   <div class="app-container">
-    <div class="filter-container">
-      <el-button class="filter-item" type="primary" icon="el-icon-edit" size="small" @click="handleCreate">新建</el-button>
-    </div>
-    <el-table
-            :data="list"
-            v-loading.body="listLoading" element-loading-text="Loading"
-            stripe
-            border
-            style="width: 100%">
-      <el-table-column
-              label="名称"
-              width="180">
-        <template slot-scope="scope">
-          <span >{{ scope.row.name }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column
-              label="创建时间"
-              width="180">
-        <template slot-scope="scope">
-          <i class="el-icon-time"></i>
-          <span style="margin-left: 10px">{{ scope.row.date | moment}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作">
-        <template slot-scope="scope">
-          <el-button
-                  size="mini"
-                  @click="handleUpdate(scope.$index, scope.row)">编辑</el-button>
-          <el-button
-                  size="mini"
-                  type="danger"
-                  @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+    <el-card>
+      <div class="filter-container">
+        <el-button class="filter-item" type="primary" icon="el-icon-edit" size="small" @click="handleCreate">新建</el-button>
+      </div>
+      <el-table
+              :data="list"
+              v-loading.body="listLoading" element-loading-text="Loading"
+              stripe
+              border
+              style="width: 100%">
+        <el-table-column
+                label="名称"
+                width="180">
+          <template slot-scope="scope">
+            <span >{{ scope.row.name }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+                label="创建时间"
+                width="180">
+          <template slot-scope="scope">
+            <i class="el-icon-time"></i>
+            <span style="margin-left: 10px">{{ scope.row.date | moment}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button
+                    size="mini"
+                    @click="handleUpdate(scope.$index, scope.row)">编辑</el-button>
+            <el-button
+                    size="mini"
+                    type="danger"
+                    @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <div class="pager-box" ng-show="paginator.totalNum">
+        <el-pagination :layout="elPager.layout"
+                      background
+                      :current-page="paginator.pageNum"
+                      :page-sizes="elPager.pageSizes"
+                      :page-size="paginator.displayNum"
+                      @current-change="changePage"
+                      @size-change="changePageSize"
+                      :total="paginator.totalNum">
+        </el-pagination>
+      </div>
+    </el-card>
+
 
     <el-dialog :visible.sync="dialogVisible">
       <img width="100%" :src="dialogImageUrl" alt="">
@@ -74,17 +88,7 @@
       </div>
     </el-dialog>
 
-    <div class="pager-box" ng-show="paginator.totalNum">
-      <el-pagination :layout="elPager.layout"
-                     background
-                     :current-page="paginator.pageNum"
-                     :page-sizes="elPager.pageSizes"
-                     :page-size="paginator.displayNum"
-                     @current-change="changePage"
-                     @size-change="changePageSize"
-                     :total="paginator.totalNum">
-      </el-pagination>
-    </div>
+
   </div>
 </template>
 

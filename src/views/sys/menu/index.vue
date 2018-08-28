@@ -1,47 +1,50 @@
 <template>
   <div class="app-container">
-  <div class="filter-container">
-      <el-button class="filter-item" type="primary" icon="el-icon-edit" size="small" @click="handleCreateRoot">添加一级菜单
-      </el-button>
-  </div>
-    <el-tree
-            :data="data"
-            default-expand-all
-            node-key="id"
-            ref="tree"
-            highlight-current
-            @node-click="handleNodeClick"
-            :expand-on-click-node="false"
-            :props="defaultProps">
-              <span class="custom-tree-node" slot-scope="{ node, data }">
-                <span>{{ node.label }}</span>
-                <span>
-                    <el-popover
-                        placement="left-end"
-                        title="提示"
-                        width="200"
-                        trigger="hover"
-                        content="系统菜单需要和前端在开发阶段配合，否则是无效的"
-                        >
-                        <el-button slot="reference" type="text" size="mini" @click="() => handleCreateChild(data)">添加子节点
-                        </el-button>
-                    </el-popover>
-                    <el-button
-                            type="text"
-                            size="mini"
-                            @click="() => handleCreateSiblings(data)"
-                    >
-                      添加兄弟节点
-                    </el-button>
-                    <el-button
-                        type="text"
-                        size="mini"
-                        @click="() => handleDelete(node, data)">
-                      删除
-                    </el-button>
+    <el-card>
+      <div class="filter-container">
+          <el-button class="filter-item" type="primary" icon="el-icon-edit" size="small" @click="handleCreateRoot">添加一级菜单
+          </el-button>
+      </div>
+      <el-tree
+              :data="data"
+              default-expand-all
+              node-key="id"
+              ref="tree"
+              highlight-current
+              @node-click="handleNodeClick"
+              :expand-on-click-node="false"
+              :props="defaultProps">
+                <span class="custom-tree-node" slot-scope="{ node, data }">
+                  <span>{{ node.label }}</span>
+                  <span>
+                      <el-popover
+                          placement="left-end"
+                          title="提示"
+                          width="200"
+                          trigger="hover"
+                          content="系统菜单需要和前端在开发阶段配合，否则是无效的"
+                          >
+                          <el-button slot="reference" type="text" size="mini" @click="() => handleCreateChild(data)">添加子节点
+                          </el-button>
+                      </el-popover>
+                      <el-button
+                              type="text"
+                              size="mini"
+                              @click="() => handleCreateSiblings(data)"
+                      >
+                        添加兄弟节点
+                      </el-button>
+                      <el-button
+                          type="text"
+                          size="mini"
+                          @click="() => handleDelete(node, data)">
+                        删除
+                      </el-button>
+                  </span>
                 </span>
-              </span>
-    </el-tree>
+      </el-tree>
+    </el-card>
+
 
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" @close='closeDialog'>

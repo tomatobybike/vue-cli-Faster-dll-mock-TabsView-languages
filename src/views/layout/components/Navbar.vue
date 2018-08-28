@@ -90,8 +90,16 @@ export default {
       this.$store.dispatch('ToggleSideBar')
     },
     logout () {
-      this.$store.dispatch('LogOut').then(() => {
-        location.reload() // 为了重新实例化vue-router对象 避免bug
+      this.$confirm(this.$t('logout.info') + '?', this.$t('logout.title'), {
+        confirmButtonText: this.$t('logout.confirm'),
+        cancelButtonText: this.$t('logout.cancel'),
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch('LogOut').then(() => {
+          location.reload() // 为了重新实例化vue-router对象 避免bug
+        })
+      }).catch((error) => {
+        console.log(error)
       })
     }
   }
