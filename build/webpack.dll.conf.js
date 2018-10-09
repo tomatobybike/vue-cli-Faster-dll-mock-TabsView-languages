@@ -3,6 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
+    // 
     vendor: [
       'babel-polyfill',
       'vue/dist/vue.common.js', 

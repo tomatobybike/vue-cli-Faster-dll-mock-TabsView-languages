@@ -29,7 +29,7 @@ module.exports = merge(baseWebpackConfig, {
       resolve('node_modules')
     ],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
+      'vue$': 'vue/dist/vue.esm.js', // 特意和 dll 中的vue 版本不一致，调试时加载完整版本可以使用vue tools
       '@': resolve('src'),
       'assets': resolve('src/assets'),
       'components': resolve('src/components')

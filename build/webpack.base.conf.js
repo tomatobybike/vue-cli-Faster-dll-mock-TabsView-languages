@@ -27,7 +27,7 @@ module.exports = {
       resolve('node_modules')
     ],
     alias: {
-      'vue$': 'vue/dist/vue.common.js',
+      'vue$': 'vue/dist/vue.common.js', // 和 dll 中的vue版本一致，防止build时，再次打包vue
       '@': resolve('src'),
       'assets': resolve('src/assets'),
       'components': resolve('src/components')
